@@ -4,7 +4,14 @@ import MyInput from "../../components/forms/MyInput";
 class Checkout extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            firstname: "",
+            lastname: ""
+        };
     }
+    changeHandler = event => {
+        this.setState({ firstname: event.target.value});
+    };
 
     render() {
         return (
@@ -24,6 +31,8 @@ class Checkout extends Component {
                                     name="firstname"
                                     label="Imię"
                                     className="form-control"
+                                    value={this.state.firstname}
+                                    onChange={this.changeHandler}
                                 /> 
                             </Col>
                             <Col xs={12} md={4}>
@@ -32,11 +41,19 @@ class Checkout extends Component {
                                     name="lastname"
                                     label="Nazwisko"
                                     className="form-control"
+                                    value={this.state.lastname}
                                 />
                             </Col>
                         </Row>
                     </div>
                 </form>
+                <Row>
+                    <Col>
+                        <h2>Podane dane:</h2>
+                        Imię:
+                        {this.state.firstname == "" ? "N/A" : this.state.firstname}
+                    </Col>
+                </Row>
             </Container>
         );
     }
