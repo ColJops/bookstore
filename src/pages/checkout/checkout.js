@@ -10,7 +10,9 @@ class Checkout extends Component {
         };
     }
     changeHandler = event => {
-        this.setState({ firstname: event.target.value});
+        let inputName = event.target.name;
+        let inputValue = event.target.value;
+        this.setState({ [inputName]: inputValue});
     };
 
     render() {
@@ -42,6 +44,7 @@ class Checkout extends Component {
                                     label="Nazwisko"
                                     className="form-control"
                                     value={this.state.lastname}
+                                    onChange={this.changeHandler}
                                 />
                             </Col>
                         </Row>
@@ -50,8 +53,16 @@ class Checkout extends Component {
                 <Row>
                     <Col>
                         <h2>Podane dane:</h2>
-                        Imię:
-                        {this.state.firstname == "" ? "N/A" : this.state.firstname}
+                        <ul className="list-group">
+                            <li className="list-group-item">
+                                Imię:&nbsp;
+                                {this.state.firstname == "" ? "N/A" : this.state.firstname}
+                            </li>
+                            <li className="list-group-item">
+                                Nazwisko:&nbsp;
+                                {this.state.lastname == "" ? "N/A" : this.state.lastname}
+                            </li>
+                        </ul>
                     </Col>
                 </Row>
             </Container>
