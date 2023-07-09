@@ -6,7 +6,10 @@ class Checkout extends Component {
         super(props);
         this.state = {
             firstname: "",
-            lastname: ""
+            lastname: "",
+            street: "",
+            zip: "",
+            city: ""
         };
     }
     changeHandler = event => {
@@ -47,6 +50,36 @@ class Checkout extends Component {
                                     onChange={this.changeHandler}
                                 />
                             </Col>
+                            <Col xs={12} md={4}>
+                                <MyInput 
+                                    type="text"
+                                    name="street"
+                                    label="Ulica i nr domu"
+                                    className="form-control"
+                                    value={this.state.street}
+                                    onChange={this.changeHandler}
+                                />
+                            </Col>
+                            <Col xs={12} md={4}>
+                                <MyInput 
+                                    type="text"
+                                    name="zip"
+                                    label="Kod pocztowy"
+                                    className="form-control"
+                                    value={this.state.zip}
+                                    onChange={this.changeHandler}
+                                />
+                            </Col>
+                            <Col>
+                                <MyInput 
+                                    type="text"
+                                    name="city"
+                                    label="Miasto"
+                                    className="form-control"
+                                    value={this.state.city}
+                                    onChange={this.changeHandler}
+                                />
+                            </Col>
                         </Row>
                     </div>
                 </form>
@@ -56,11 +89,23 @@ class Checkout extends Component {
                         <ul className="list-group">
                             <li className="list-group-item">
                                 Imię:&nbsp;
-                                {this.state.firstname == "" ? "N/A" : this.state.firstname}
+                                {this.state.firstname === "" ? "N/A" : this.state.firstname}
                             </li>
                             <li className="list-group-item">
                                 Nazwisko:&nbsp;
-                                {this.state.lastname == "" ? "N/A" : this.state.lastname}
+                                {this.state.lastname === "" ? "N/A" : this.state.lastname}
+                            </li>
+                            <li className="list-group-item">
+                                Ulica i nr domu:&nbsp;
+                                {this.state.street === "" ? "N/A" : this.state.street}
+                            </li>
+                            <li className="list-group-item">
+                                Kod pocztowy:&nbsp;
+                                {this.state.zip === "" ? "N/A" : this.state.zip}
+                            </li>
+                            <li className="list-group-item">
+                                Miasto:&nbsp;
+                                {this.state.city === "" ? "N/A" : this.state.city}
                             </li>
                         </ul>
                     </Col>
