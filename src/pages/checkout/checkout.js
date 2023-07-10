@@ -19,12 +19,16 @@ class Checkout extends Component {
             zip: "",
             city: "",
             paymentType: "",
-            comment: ""
+            comment: "",
+            gift: false
         };
     }
     changeHandler = event => {
         let inputName = event.target.name;
-        let inputValue = event.target.value;
+        let inputValue = 
+            event.target.type === "checkbox"
+                ? event.target.checked
+                : event.target.value;
         this.setState({ [inputName]: inputValue});
     };
 
@@ -110,6 +114,16 @@ class Checkout extends Component {
                                     onChange={this.changeHandler}
                                 />
                             </Col>
+                            <Col xs={12} md={4}>
+                                <MyInput 
+                                    type="checkbox"
+                                    name="gift"
+                                    label="Zapakować na prezent?"
+                                    className="form-control"
+                                    onChange={this.changeHandler}
+                                    value={this.state.gift}
+                                />
+                            </Col>
                         </Row>
                     </div>
                 </form>
@@ -144,6 +158,10 @@ class Checkout extends Component {
                             <li className="list-group-item">
                                 Dodatkowy komenterz:&nbsp;
                                 {this.state.comment === "" ? "N/A" : this.state.comment}
+                            </li>
+                            <li className="list-group-item">
+                                Zapakować na prezent?:&nbsp;
+                                {this.state.gift === "" ? "N/A" : this.state.gift}
                             </li>
                         </ul>
                     </Col>
