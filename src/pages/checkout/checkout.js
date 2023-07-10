@@ -1,7 +1,14 @@
 import React, {Component} from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import MyInput from "../../components/forms/MyInput";
+import MySelect from "../../components/forms/MySelect";
 class Checkout extends Component {
+    paymentOptions = [
+        { id: "-", name: "----" },
+        { id: "pp", name: "PayPal" },
+        { id: "stripe", name: "Stripe"},
+        { id: "cc", name: "Karta kredytowa"}
+    ];
     constructor(props) {
         super(props);
         this.state = {
@@ -9,7 +16,8 @@ class Checkout extends Component {
             lastname: "",
             street: "",
             zip: "",
-            city: ""
+            city: "",
+            paymentType: ""
         };
     }
     changeHandler = event => {
@@ -80,6 +88,16 @@ class Checkout extends Component {
                                     onChange={this.changeHandler}
                                 />
                             </Col>
+                            <Col xs={12} md={4}>
+                                <MySelect
+                                    name="paymentType"
+                                    label="Rodzaj płatności"
+                                    className="form-control"
+                                    value={this.state.paymentType}
+                                    onChange={this.changeHandler}
+                                    options={this.paymentOptions}
+                                />
+                            </Col>
                         </Row>
                     </div>
                 </form>
@@ -106,6 +124,10 @@ class Checkout extends Component {
                             <li className="list-group-item">
                                 Miasto:&nbsp;
                                 {this.state.city === "" ? "N/A" : this.state.city}
+                            </li>
+                            <li className="list-group-item">
+                                Rodzaj płatności:&nbsp;
+                                {this.state.paymentType === "" ? "N/A" : this.state.paymentType}
                             </li>
                         </ul>
                     </Col>
