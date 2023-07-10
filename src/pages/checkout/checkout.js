@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import MyInput from "../../components/forms/MyInput";
 import MySelect from "../../components/forms/MySelect";
+import MyTextArea from "../../components/forms/MyTextArea";
 class Checkout extends Component {
     paymentOptions = [
         { id: "-", name: "----" },
@@ -17,7 +18,8 @@ class Checkout extends Component {
             street: "",
             zip: "",
             city: "",
-            paymentType: ""
+            paymentType: "",
+            comment: ""
         };
     }
     changeHandler = event => {
@@ -98,6 +100,16 @@ class Checkout extends Component {
                                     options={this.paymentOptions}
                                 />
                             </Col>
+                            <Col xs={12} md={4}>
+                                <MyTextArea 
+                                    type="text"
+                                    name="comment"
+                                    label="Komentarz"
+                                    className="form-control"
+                                    value={this.state.comment}
+                                    onChange={this.changeHandler}
+                                />
+                            </Col>
                         </Row>
                     </div>
                 </form>
@@ -128,6 +140,10 @@ class Checkout extends Component {
                             <li className="list-group-item">
                                 Rodzaj płatności:&nbsp;
                                 {this.state.paymentType === "" ? "N/A" : this.state.paymentType}
+                            </li>
+                            <li className="list-group-item">
+                                Dodatkowy komenterz:&nbsp;
+                                {this.state.comment === "" ? "N/A" : this.state.comment}
                             </li>
                         </ul>
                     </Col>
