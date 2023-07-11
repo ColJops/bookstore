@@ -112,6 +112,7 @@ class Checkout extends Component {
                         <Row>
                             <Col xs={12}>
                                 <h1>Witamy przy kasie!</h1>
+                                <h3>(starsza wersja)</h3>
                                 <h2>Podaj dane do wysyłki:</h2>
                             </Col>
                         </Row>
