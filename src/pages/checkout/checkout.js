@@ -63,10 +63,51 @@ class Checkout extends Component {
         }
     };
 
+    submissionHandler = event => {
+        let errorFound = false;
+        if (this.state.firstname.length < 2) {
+            errorFound = true;
+            this.setState(prevState => ({
+                errors: {
+                    ...prevState.errors,
+                    firstnameError: "Imię powinno mieć co najmniej 2 znaki"
+                }
+            }));
+        } else {
+            this.setState(prevState => ({
+                errors: {
+                    ...prevState.errors,
+                    firstnameError: ""
+                }
+            }));
+        }
+        if (this.state.lastname.length < 2) {
+            errorFound = true;
+            this.setState(prevState => ({
+                errors: {
+                    ...prevState.errors,
+                    lastnameError: "Nazwisko powinno mieć co najmniej 2 znaki"
+                }
+            }));
+        } else {
+            this.setState(prevState => ({
+                errors: {
+                    ...prevState.errors,
+                    lastnameError: ""
+                }
+            }));
+        }
+        if (errorFound) {
+            event.preventDefault();
+        } else {
+            console.log(this.state);
+        }
+    };
+
     render() {
         return (
             <Container>
-                <form>
+                <form onSubmit={this.submissionHandler}>
                     <div className="form-group">
                         <Row>
                             <Col xs={12}>
@@ -209,7 +250,7 @@ class Checkout extends Component {
                             </li>
                             <li className="list-group-item">
                                 Zapakować na prezent?:&nbsp;
-                                {this.state.gift === "" ? "Tak" : "Nie"}
+                                {this.state.gift === "" ? "Nie" : "Tak"}
                             </li>
                         </ul>
                     </Col>
