@@ -20,7 +20,17 @@ class Checkout extends Component {
             city: "",
             paymentType: "",
             comment: "",
-            gift: false
+            gift: false,
+            errors :{
+                firstnameError: "",
+                lastnameError: "",
+                streetError: "",
+                zipError: "",
+                cityError: "",
+                paymentTypeError: "",
+                commentError: "",
+                giftError: ""
+            }
         };
     }
     changeHandler = event => {
@@ -29,7 +39,28 @@ class Checkout extends Component {
             event.target.type === "checkbox"
                 ? event.target.checked
                 : event.target.value;
-        this.setState({ [inputName]: inputValue});
+        this.setState(prevState =>({
+            ...prevState,
+            [inputName]: inputValue
+        }));
+
+        if(inputName === "firstname") {
+            if (inputValue.lenght < 2) {
+                this.setState(prevState => ({
+                    errors: {
+                        ...prevState.errors,
+                        firstnameError: "Imię powinno mieć co najmniej 2 znaki"
+                    }
+                }));
+            } else {
+                this.setState(prevState => ({
+                    errors: {
+                        ...prevState.errors,
+                        firstnameError: ""
+                    }
+                }))
+            }
+        }
     };
 
     render() {
@@ -52,6 +83,7 @@ class Checkout extends Component {
                                     className="form-control"
                                     value={this.state.firstname}
                                     onChange={this.changeHandler}
+                                    error={this.state.errors.firstnameError}
                                 /> 
                             </Col>
                             <Col xs={12} md={4}>
@@ -62,6 +94,7 @@ class Checkout extends Component {
                                     className="form-control"
                                     value={this.state.lastname}
                                     onChange={this.changeHandler}
+                                    error={this.state.errors.lastnameError}
                                 />
                             </Col>
                             <Col xs={12} md={4}>
@@ -72,6 +105,7 @@ class Checkout extends Component {
                                     className="form-control"
                                     value={this.state.street}
                                     onChange={this.changeHandler}
+                                    error={this.state.errors.streetError}
                                 />
                             </Col>
                             <Col xs={12} md={4}>
@@ -82,6 +116,7 @@ class Checkout extends Component {
                                     className="form-control"
                                     value={this.state.zip}
                                     onChange={this.changeHandler}
+                                    error={this.state.errors.zipError}
                                 />
                             </Col>
                             <Col>
@@ -92,6 +127,7 @@ class Checkout extends Component {
                                     className="form-control"
                                     value={this.state.city}
                                     onChange={this.changeHandler}
+                                    error={this.state.errors.cityError}
                                 />
                             </Col>
                             <Col xs={12} md={4}>
@@ -102,6 +138,7 @@ class Checkout extends Component {
                                     value={this.state.paymentType}
                                     onChange={this.changeHandler}
                                     options={this.paymentOptions}
+                                    error={this.state.errors.paymentTypeError}
                                 />
                             </Col>
                             <Col xs={12} md={4}>
@@ -112,6 +149,7 @@ class Checkout extends Component {
                                     className="form-control"
                                     value={this.state.comment}
                                     onChange={this.changeHandler}
+                                    error={this.state.errors.commentError}
                                 />
                             </Col>
                             <Col xs={12} md={4}>
@@ -122,6 +160,7 @@ class Checkout extends Component {
                                     className="form-control"
                                     onChange={this.changeHandler}
                                     value={this.state.gift}
+                                    error={this.state.giftError}
                                 />
                             </Col>
                         </Row>
@@ -161,7 +200,7 @@ class Checkout extends Component {
                             </li>
                             <li className="list-group-item">
                                 Zapakować na prezent?:&nbsp;
-                                {this.state.gift === "" ? "N/A" : this.state.gift}
+                                {this.state.gift === "" ? "Tak" : "Nie"}
                             </li>
                         </ul>
                     </Col>
