@@ -164,6 +164,15 @@ class Checkout extends Component {
                                 />
                             </Col>
                         </Row>
+                        <Row>
+                            <Col>
+                                <MyInput
+                                    type="submit"
+                                    className="btn btn-primary btn-lg btn-block"
+                                    value="Wyślij"
+                                />
+                            </Col>
+                        </Row>
                     </div>
                 </form>
                 <Row>
