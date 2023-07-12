@@ -1,6 +1,7 @@
 import React from "react";
 import { Formik, Field, Form } from "formik";
 import { Row, Col, Container } from "react-bootstrap";
+import * as Yup from "yup";
 import MySelectF from "../../components/formik/MySelectF";
 import MyCheckbox from "../../components/formik/MyCheckBox";
 import MyInputF from "../../components/formik/MyInputFormik";
@@ -33,7 +34,36 @@ const FormikCheckout = ({ props }) => {
                         comment: "",
                         gift: false
                     }}
-                    on submit={values => {
+                    validationSchema={Yup.object({
+                        firstname: Yup.string()
+                            .min(2, "Imię musi posiadać minimum 2 znaki")
+                            .max(15, "Imię musi posiadać maksymalnie 15 znaków")
+                            .required("Pole wymagane"),
+                        lastname: Yup.string()
+                            .min(2, "Nazwisko musi posiadać minimum 2 znaki")
+                            .max(15, "Imię musi posiadać maksymalnie 15 znaków")
+                            .required("Pole wymagane"),
+                        street: Yup.string()
+                            .min(2, "Ulica musi posiadać minimum 2 znaki")
+                            .max(20, "Ulica musi posiadać maksymalnie 20 znaków")
+                            .required("Pole wymagane"),
+                        zip: Yup.string()
+                            .min(2, "Kod musi posiadać minimum 2 znaki")
+                            .max(6, "Kod musi posiadać maksymalnie 6 znaków")
+                            .required("Pole wymagane"),
+                        city: Yup.string()
+                            .min(2, "Miasto musi posiadać minimum 2 znaki")
+                            .max(15, "Miasto musi posiadać maksymalnie 15 znaków")
+                            .required("Pole wymagane"),
+                        gift: Yup.boolean().required("Pole wymagane"),
+                        paymentType: Yup.string()
+                            .oneOf(
+                                ["Stripe", "PayPal", "Karta kredytowa"],
+                                "Niepoprawny typ płatności"
+                                )
+                                .required("Pole wymagane")
+                    })}
+                    onSubmit={values => {
                         console.log(values)
                     }}
             >
