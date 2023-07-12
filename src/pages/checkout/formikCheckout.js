@@ -1,5 +1,5 @@
 import React from "react";
-import { Formik, Field, Form } from "formik";
+import { Formik, useField, Form, useFormikContext } from "formik";
 import { Row, Col, Container } from "react-bootstrap";
 import * as Yup from "yup";
 import MySelectF from "../../components/formik/MySelectF";
@@ -67,78 +67,80 @@ const FormikCheckout = ({ props }) => {
                         console.log(values)
                     }}
             >
-                <Form>
-                    <Row>
-                        <Col xs={12} md={4}>
-                            <MyInputF 
-                                label="Imię"
-                                name="firstname"
-                                type="text"
-                                className="form-control"
-                            />
-                        </Col>
-                        <Col xs={12} md={4}>
-                            <MyInputF 
-                                label="Nazwisko"
-                                name="lastname"
-                                type="text"
-                                className="form-control"
-                            />                      
-                        </Col>
-                        <Col xs={12} md={4}>
-                            <MyInputF 
-                                label="Ulica i nr domu"
-                                name="street"
-                                type="text"
-                                className="form-control"
-                            />                       
-                        </Col>
-                        <Col xs={12} md={4}>
-                            <MyInputF 
-                                label="Kod pocztowy"
-                                name="zip"
-                                type="text"
-                                className="form-control"
-                            />
-                        </Col>
-                        <Col xs={12} md={4}>
-                            <MyInputF 
-                                label="Miasto"
-                                name="city"
-                                type="text"
-                                className="form-control"
-                            />
-                        </Col>
-                        <Col xs={12} md={4}>
-                            <MySelectF 
-                                label="Rodzaj płatności"
-                                name="paymentType"
-                                className="form-control"
-                                options={paymentOptions}
-                            />
-                        </Col>
-                        <Col xs={12} md={4}>
-                            <MyTextAreaF 
-                                label="Komentarz"
-                                name="comment"
-                                className="form-control"
-                            />
-                        </Col>
-                        <Col xs={12} md={4}>
-                            <MyCheckbox 
-                                name="gift"
-                                className="form-control"
-                                label="Zapakować na prezent"
-                            />
-                        </Col>
-                        <Col xs={12} md={4}>
-                           <button 
-                                type="submit"
-                                className="btn btn-primary btn-lg btn-block"
-                            >
-                                Wyślij</button> 
-                        </Col>
-                    </Row>     
+                <Form className="w-100">
+                    <Container>
+                        <Row>
+                            <Col xs={12} md={4}>
+                                <MyInputF 
+                                    label="Imię"
+                                    name="firstname"
+                                    type="text"
+                                    className="form-control"
+                                />
+                            </Col>
+                            <Col xs={12} md={4}>
+                                <MyInputF 
+                                    label="Nazwisko"
+                                    name="lastname"
+                                    type="text"
+                                    className="form-control"
+                                />                      
+                            </Col>
+                            <Col xs={12} md={4}>
+                                <MyInputF 
+                                    label="Ulica i nr domu"
+                                    name="street"
+                                    type="text"
+                                    className="form-control"
+                                />                       
+                            </Col>
+                            <Col xs={12} md={4}>
+                                <MyInputF 
+                                    label="Kod pocztowy"
+                                    name="zip"
+                                    type="text"
+                                    className="form-control"
+                                />
+                            </Col>
+                            <Col xs={12} md={4}>
+                                <MyInputF 
+                                    label="Miasto"
+                                    name="city"
+                                    type="text"
+                                    className="form-control"
+                                />
+                            </Col>
+                            <Col xs={12} md={4}>
+                                <MySelectF 
+                                    label="Rodzaj płatności"
+                                    name="paymentType"
+                                    className="form-control"
+                                    options={paymentOptions}
+                                />
+                            </Col>
+                            <Col xs={12} md={4}>
+                                <MyTextAreaF 
+                                    label="Komentarz"
+                                    name="comment"
+                                    className="form-control"
+                                />
+                            </Col>
+                            <Col xs={12} md={4}>
+                                <MyCheckbox 
+                                    name="gift"
+                                    className="form-control"
+                                    label="Zapakować na prezent"
+                                />
+                            </Col>
+                            <Col xs={12} md={4}>
+                            <button 
+                                    type="submit"
+                                    className="btn btn-primary btn-lg btn-block"
+                                >
+                                    Wyślij</button> 
+                            </Col>
+                        </Row>
+                    </Container>
                 </Form>
             </Formik>
         </Container>
