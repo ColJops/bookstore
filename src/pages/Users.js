@@ -35,15 +35,27 @@ class Users extends Component {
         } else if (!this.state.isLoaded) {
             return <div>Ładowanie...</div>;
         } else {
-            return this.state.users.map(user => (
-                <div key={user.id}>
-                    <p>
-                        <strong>{user.first_name}</strong> {user.last_name}
-                    </p>
-                    <p>{user.email}</p>
-                    <img key={user.avatar} scr={user.avatar} />
-                </div>
-            ));
+            return (
+                <Container>
+                    <Row>
+                        {this.state.users.map(user => (
+                            <Col md={4} key={user.id}>
+                                <div className="card md-2">
+                                    <img
+                                        className="card-img-top"
+                                        src={user.avatar}
+                                        alt="Card image cap"
+                                    />
+                                    <div className="card-body">
+                                        <h5 className="card-title">{user.first_name}</h5>
+                                        <p className="card-text">{user.email}</p>
+                                    </div>
+                                </div>
+                            </Col>
+                        ))} 
+                    </Row>
+                </Container>
+            );
         }
     }
 }
