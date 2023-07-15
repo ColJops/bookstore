@@ -6,7 +6,7 @@ const MyInputF = ({ label, ...props}) => {
             <div>
                 <label htmlFor={props.name}>{label}</label>
                 <input {...field} {...props} />
-                {meta. error ? (
+                {meta.error ? (
                     <small className="alart alert-danger form-text text-muted">
                         {meta.error}
                     </small>
