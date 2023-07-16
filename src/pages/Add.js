@@ -31,33 +31,35 @@ class Add extends Component {
         return (
             <form onSubmit={this.handleSubmit}>
                 <Container>
-                    <Col xs={12} md={4}>
-                        <label>Imię:</label>
-                        <input
-                            type="text"
-                            value={this.state.name}
-                            name="name"
-                            className="form-control"
-                            onChange={this.handleChange}
-                        />
-                    </Col>
-                    <Col xs={12} md={4}>
-                        <label>Filmy:</label>
-                        <input
-                            type="text"
-                            value={this.state.movies}
-                            name="movies"
-                            className="form-control"
-                            onChange={this.handleChange}
-                        />
-                    </Col>
-                    <Col xs={12}>
-                        <input
-                            type="submit"
-                            value="Wyślij"
-                            className="btn btn-primary btn-lg btn-block mt-2"
-                        />
-                    </Col>
+                    <Row>
+                        <Col xs={12} md={4}>
+                            <label>Imię:</label>
+                            <input
+                                type="text"
+                                value={this.state.name}
+                                name="name"
+                                className="form-control"
+                                onChange={this.handleChange}
+                            />
+                        </Col>
+                        <Col xs={12} md={4}>
+                            <label>Filmy:</label>
+                            <input
+                                type="text"
+                                value={this.state.movies}
+                                name="movies"
+                                className="form-control"
+                                onChange={this.handleChange}
+                            />
+                        </Col>
+                        <Col xs={12}>
+                            <input
+                                type="submit"
+                                value="Wyślij"
+                                className="btn btn-primary btn-lg btn-block mt-2"
+                            />
+                        </Col>
+                    </Row>
                 </Container>
             </form>    
         );
